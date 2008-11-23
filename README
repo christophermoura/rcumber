@@ -1,0 +1,22 @@
+Rcumber
+============
+This is a simple rails plugin that provides a web interface to view, edit and run Cucumber story tests in your rails project.
+I am designing it for use on our current projects with the idea that our customers can help us specify customer tests in Rcumber.
+
+I just started it a few days ago, but it's already functional, so I'll put it up here on GitHub for the rest of the world to
+help me make it better.
+
+Installation
+============
+Grab it from git-hub, add it as a plugin. 
+
+Example
+=======
+Start your server and visit http://localhost:3000/rcumber.  The UI should be self explanatory.
+
+Release Notes:
+=============
+rcumber-0.1:  Initial port into github
+
+
+Copyright (c) 2008 [John Goodsen, jgoodsen@radsoft.com], released under the MIT license

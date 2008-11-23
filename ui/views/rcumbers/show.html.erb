@@ -1,0 +1,15 @@
+<%= link_to 'all tests', '/rcumber' %>
+<h1><%= @test.name %></h1>
+<% form_for @test do |f| %>
+	<%= f.text_area :raw_content, :cols => 80 %>
+<% end %>
+<%= link_to 'run this test', rcumber_run_path(@test.uid)%>
+<% unless @test.last_results.nil? %>
+	<h1>Test Results</h1>
+	<ul>
+		<% @test.last_results.each do |line| %>
+			<%= content_tag :li, line %>
+		<% end %>
+	</ul>
+		
+<% end %>
