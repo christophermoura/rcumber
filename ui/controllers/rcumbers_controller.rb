@@ -47,7 +47,6 @@ class RcumbersController < ApplicationController
       flash.now[:error] = "Please don't try to pickle an empty cuke!."
       render :action => 'edit'
     else
-      get_rcumber
       @rcumber.raw_content = params[:rcumber][:raw_content]
       @rcumber.save
       flash.now[:notice] = "Cucumber was pickled!"
