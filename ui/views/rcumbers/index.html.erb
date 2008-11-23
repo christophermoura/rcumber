@@ -1,8 +1,8 @@
-
-
-<div id="cucumber_tests_header">Cucumber Tests</h2>
+<div id="cucumber_index">
+<h1>Cucumber Tests</h1>
 <ul id="cucumber_tests">
 <% @rcumbers.each do |rcumber| %>
   <%= content_tag :li, content_tag(:a, rcumber.name, :href => rcumber_path(rcumber.uid)), :class => 'cucumber_test' %>
 <% end %>
 </ul>
+</div>

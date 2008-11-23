@@ -1,30 +1,34 @@
+require File.expand_path(File.dirname(__FILE__) + '/../helpers/rcumbers_helper')
 
 class RcumbersController < ApplicationController
 
   layout 'rcumbers'
+  include RcumbersHelper
   
   def index
     @rcumbers = Rcumber.all
   end
   
   def show
-    @test = Rcumber.find(params[:id])
+    @rcumber = Rcumber.find(params[:id])
   end
   
   def run
-    @test = Rcumber.find(params[:rcumber_id])
-    @test.run
+    @rcumber = Rcumber.find(params[:rcumber_id])
+    @rcumber.run
     render :action => 'show'
   end
   
   def update
-    @test = Rcumber.find(params[:id])
-    @test.raw_content = params[:raw_content]
-    @test.save
+    @rcumber = Rcumber.find(params[:id])
+    if params[:rcumber][:raw_content].empty?
+      flash[:error] = "Please don't try to save an empty spec."
+    else
+      @rcumber.raw_content = params[:rcumber][:raw_content]
+      @rcumber.save
+    end
+    render :action => 'show'
   end
-  
-  
-  
   
   
   # don't want to include any filters inside the application chain - might create errors
