@@ -5,7 +5,8 @@
 class Rcumber
 
   ## This class is used to hold the resulting log of a test run
-  ## and provides a basic API on the data:
+  ## and eventually provide an api around the results of a test run.
+  ## for now, I'm just extending an Array
   class RcumberResults < Array
   end
       
@@ -26,6 +27,10 @@ class Rcumber
     self.last_results = RcumberResults.new(`cucumber features/*.feature`.to_a)
   end
 
+  def save
+   File.open(@path, 'w') {|f| f.write(@raw_content) }
+  end
+  
   def self.all
     Dir.glob("#{PATH_PREFIX}**/*#{FEATURE_SUFFIX}").collect { |x| new(x) }
   end

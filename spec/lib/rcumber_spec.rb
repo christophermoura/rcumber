@@ -4,7 +4,7 @@ describe Rcumber do
  
   before(:each) do
     @all_rcumbers = Dir.glob("#{Rcumber::PATH_PREFIX}**/*.feature").collect{|x| Rcumber.new(x)}
- 
+    Rcumber.all.first.name == @all_rcumbers.first.name
  
     @content_feature =<<ENDL
 Feature: A User Story
@@ -62,12 +62,16 @@ ENDL
       @test.uid.should == "feature_x"
     end
     
-    # describe "preamble" do
-    #   it "should return the lines between 'Feature:' and the first Scenario:" do
-    #     @test.preamble.should == @content_preamble.to_a
-    #   end
-    # end
+    describe "save" do
+    
+      it "should write the contents to the file" do
+        File.should_receive(:open).with(@full_path, 'w')
+        @test.save
+      end
+      
   
+    end
+
     describe "Rcumber.find" do
       it "should return an Rcumber object if it exists" do
         Rcumber.stub!(:all).and_return([@test])

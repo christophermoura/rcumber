@@ -17,6 +17,16 @@ class RcumbersController < ApplicationController
     render :action => 'show'
   end
   
+  def update
+    @test = Rcumber.find(params[:id])
+    @test.raw_content = params[:raw_content]
+    @test.save
+  end
+  
+  
+  
+  
+  
   # don't want to include any filters inside the application chain - might create errors
   if respond_to? :filter_chain
     filters = filter_chain.collect do |f|
