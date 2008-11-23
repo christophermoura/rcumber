@@ -40,7 +40,9 @@ describe RcumbersController do
       @mock_rcumber.should_receive(:raw_content=).with("some raw content")
       @mock_rcumber.should_receive(:save).and_return(true)
       put :update, :id => "name", :rcumber => {:raw_content => "some raw content"}
+      flash.now[:notice].should_not be_nil
       response.should render_template(:show)
+      
     end
 
     it "should reject a save with no content" do
@@ -48,7 +50,18 @@ describe RcumbersController do
       Rcumber.should_receive(:find).with("name").and_return(@mock_rcumber)
       put :update, :id => "name", :rcumber => {:raw_content => ""}
       response.should render_template(:show)
-      flash[:error].should_not be_nil
+      flash.now[:error].should_not be_nil
+    end
+    
+  end
+  
+  describe 'edit' do
+    it 'should render a form with the object in it' do
+      @mock_rcumber = mock Rcumber
+      Rcumber.should_receive(:find).with("name").and_return(@mock_rcumber)
+      put :edit, :id => "name"
+      assigns[:rcumber].should == @mock_rcumber
+      response.should render_template(:edit)
     end
   end
   

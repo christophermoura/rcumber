@@ -1,13 +1,23 @@
 <%= link_to 'see all story tests', '/rcumber' %>
 | <%= link_to 'run this story test', rcumber_run_path(@rcumber.uid)%>
+| <%= link_to 'edit this story test', edit_rcumber_path(@rcumber.uid)%>
+
 <%= rcumber_flashes %>
+
 <h1><%= @rcumber.name %></h1>
-<% form_for @rcumber, :url => rcumber_path(@rcumber.uid) do |f| %>
-	<%= f.text_area :raw_content, :cols => 80 %>
-	<br/>
-	<br/>
-		<%= submit_tag 'Save' %>
-<% end %>
+	
+	<ul class="rcumber_content">
+	<% @rcumber.raw_content.each do |line| %>
+		<%
+			line =~ /([ \t]*)(.*)/
+			indents = $1.split('').collect{|x| '&nbsp;&nbsp;'}
+		%>
+		<%= content_tag :li, indents.to_s + line %>
+	<% end %>
+	</ul>
+
+
+
 <% unless @rcumber.last_results.nil? %>
 	<h1>Test Results</h1>
 	<ul>
