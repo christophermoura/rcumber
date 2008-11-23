@@ -1,0 +1,83 @@
+	
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>RCumber - Rails Cucumber Interface</title>
+	<%= stylesheet_link_tag 'rcumber' %>
+
+body {
+font-family: "lucida grande",lucida,verdana,sans-serif;
+font-size: 12px;
+font-size-adjust: none;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+}
+
+	div#cucumber_tests_header {
+		background: #999;
+		width: 200px;
+	}
+	ul#cucumber_tests {
+		border: 1px solid #999;
+		width: 200px;
+	}
+	li.cucumber_test { list-style-image: url(/images/icons/magic_wand.gif)  }
+
+a {
+	text-decoration: none;
+	font: normal normal bold 1em "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	font-weight: bold;
+	color: #5588FF;
+}
+
+
+#hd {
+	width: 100%;
+}
+
+#bd {
+	min-height: 600px;
+}
+
+#ft {
+	position: absolute;
+	margin-bottom: 0px;
+}
+
+body {
+font-family: "lucida grande",lucida,verdana,sans-serif;
+font-size: 12px;
+font-size-adjust: none;
+font-style: normal;
+font-variant: normal;
+font-weight: normal;
+}
+	</style>
+</head>
+<body>
+<div id="doc3" class="yui-t4">
+   <div id="hd">RCUMBER HEADER
+	</div>
+   <div id="bd">
+	<div class="yui-g">
+	<!-- YOUR DATA GOES HERE -->
+	</div>
+
+<div class="yui-g">
+	<%= yield %>
+	</div>
+
+	</div>
+   <div id="ft">RCUMBER FOOTER</div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$('li.cucumber')
+	});
+	
+</script>
