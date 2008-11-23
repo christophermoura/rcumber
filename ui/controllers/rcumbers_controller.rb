@@ -27,12 +27,13 @@ class RcumbersController < ApplicationController
     @rcumber = Rcumber.find(params[:id])
     if params[:rcumber][:raw_content].empty?
       flash.now[:error] = "Please don't try to pickle an empty cuke!."
+      render :action => 'edit'
     else
       @rcumber.raw_content = params[:rcumber][:raw_content]
       @rcumber.save
       flash.now[:notice] = "Cucumber was pickled!"
+      render :action => 'show'
     end
-    render :action => 'show'
   end
   
   # don't want to include any filters inside the application chain - might create errors

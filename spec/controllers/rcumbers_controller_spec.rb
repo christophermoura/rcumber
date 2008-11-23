@@ -49,7 +49,7 @@ describe RcumbersController do
       @mock_rcumber = mock Rcumber
       Rcumber.should_receive(:find).with("name").and_return(@mock_rcumber)
       put :update, :id => "name", :rcumber => {:raw_content => ""}
-      response.should render_template(:show)
+      response.should render_template(:edit)
       flash.now[:error].should_not be_nil
     end
     
