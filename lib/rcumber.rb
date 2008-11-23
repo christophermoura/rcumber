@@ -23,7 +23,7 @@ class Rcumber
   end
 
   def run
-    self.last_results = RcumberResults.new(`rake features`.to_a)
+    self.last_results = RcumberResults.new(`cucumber features/*.feature`.to_a)
   end
 
   def self.all

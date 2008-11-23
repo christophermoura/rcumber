@@ -1,20 +1,5 @@
-Pasted from the "wiki" at http://github.com/jgoodsen/rcumber/wikis Home Page:
-
-rcumber is a rails plugin that lets your customers view, edit and run Cucumber tests directly from your rails project.
-
-h2. Three Step Installation
-
-It's simple to use - just add it as a plugin to your project:
-
-<pre>
-   cd ./vendor/plugins
-   git clone git://github.com/jgoodsen/rcumber.git
-</pre>
-
-Step two:  just start your rails server and visit http://localhost:3000/rcumber
-
-Step three: Oh, there is no step three!
-
-h2. This is just a first cut of my idea.
-
-The current release is just a first cut hack at my idea.  See the [[User Story Backlog]] for immediate features I'm planning to implement and checkout the [[Product Roadmap]] for a larger picture of more features we want to add.  I'm looking for some help - if you're interested, please contact me.
+## TODO: A Script/Generate or install hook is needed to:
+##
+## 1. Install rcumber.css into the project.
+## 2. Setup the routes for the views
+## 3. Copy the rcumbers.html.erb layout file to the project or get it automagically located in the plugin like the views are...
