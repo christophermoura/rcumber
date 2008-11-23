@@ -4,57 +4,9 @@
 <html>
 <head>
 	<title>RCumber - Rails Cucumber Interface</title>
-	<%= stylesheet_link_tag 'rcumber' %>
 
-body {
-font-family: "lucida grande",lucida,verdana,sans-serif;
-font-size: 12px;
-font-size-adjust: none;
-font-style: normal;
-font-variant: normal;
-font-weight: normal;
-}
-
-	div#cucumber_tests_header {
-		background: #999;
-		width: 200px;
-	}
-	ul#cucumber_tests {
-		border: 1px solid #999;
-		width: 200px;
-	}
-	li.cucumber_test { list-style-image: url(/images/icons/magic_wand.gif)  }
-
-a {
-	text-decoration: none;
-	font: normal normal bold 1em "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-	font-weight: bold;
-	color: #5588FF;
-}
-
-
-#hd {
-	width: 100%;
-}
-
-#bd {
-	min-height: 600px;
-}
-
-#ft {
-	position: absolute;
-	margin-bottom: 0px;
-}
-
-body {
-font-family: "lucida grande",lucida,verdana,sans-serif;
-font-size: 12px;
-font-size-adjust: none;
-font-style: normal;
-font-variant: normal;
-font-weight: normal;
-}
-	</style>
+	<%= render :partial => 'rcumbers/stylesheet' %>
+	
 </head>
 <body>
 <div id="doc3" class="yui-t4">

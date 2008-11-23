@@ -14,7 +14,7 @@ class Rcumber
   # For now, the UID is the basename w/o extension of the file:  e.g. "../foo.feature" has uid =>"foo"
   # TODO: FIXME: This has the limitation that you need unique cucumber filenames down the entire directory tree...
   attr_reader :uid 
-  
+
   PATH_PREFIX = RAILS_ROOT + "/features/"
   FEATURE_SUFFIX = ".feature"
 

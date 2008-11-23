@@ -1,5 +1,1 @@
-## TODO: A Script/Generate or install hook is needed to:
-##
-## 1. Install rcumber.css into the project.
-## 2. Setup the routes for the views
-## 3. Copy the rcumbers.html.erb layout file to the project or get it automagically located in the plugin like the views are...
+See the wiki at http://github.com/jgoodsen/rcumber/wikis for more installation instructions and documentation.

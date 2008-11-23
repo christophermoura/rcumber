@@ -1,6 +1,8 @@
 
 class RcumbersController < ApplicationController
 
+  layout 'rcumbers'
+  
   def index
     @rcumbers = Rcumber.all
   end
