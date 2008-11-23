@@ -1,0 +1,18 @@
+
+<%= rcumber_flashes %>
+
+
+<fieldset id="edit_rcumber">
+	<legend>Edit: <%= @rcumber.name %></legend>
+	
+	<% form_for @rcumber, :url => rcumber_path(@rcumber.uid) do |f| %>
+		<%= f.text_area :raw_content, :cols => 70 %>
+		<br/>
+		<br/>
+			<%= submit_tag 'Pickle It!' %>
+			<%= link_to 'Cancel this edit', rcumber_path(@rcumber.uid) %>
+			<% if params[:demos] == "true" %>
+				<input type="hidden" name="demos" value="true">
+			<% end %>
+	<% end %>
+</fieldset>
