@@ -13,4 +13,7 @@ module RcumbersHelper
     content_tag 'div', flash_to_display, :class => "flash #{level}"
   end
   
+  def demo_parameters
+    ((params[:demos] == "true") ? "?demos=true" : "")
+  end
 end

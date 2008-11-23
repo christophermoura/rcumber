@@ -1,11 +1,25 @@
 <div id="cucumber_index">
 <h1>Rcumber</h1>
 <h2>Manage and Run your Cucumber Tests with a Rails Plugin.</h1>
-	<p>You are looking at the very first version of rcumber.  Please give us feedback at github so we can turn many a mickle into a muckle.</p>
+	<p>You are looking at the very first version of rcumber.  <br/>
+		Please give us feedback at github so we can turn many a mickle into a muckle.
+	</p>
 <h3>Here's all your Cukes!</h3>
 <ul id="cucumber_tests">
-<% @rcumbers.each do |rcumber| %>
-  <%= content_tag :li, content_tag(:a, rcumber.name, :href => rcumber_path(rcumber.uid)), :class => 'cucumber_test' %>
+<% if @rcumbers.empty? %>
+	<p>You don't have any Cucumber tests in the ./feature directory of your project. <br/>
+		Either create some, or you can look at these <%= link_to 'demo cucumber tests', rcumbers_path + "?demos=true" %> 
+	</p>
+<% else %>
+	<% @rcumbers.each do |rcumber| %>
+	  <%= content_tag :li, 
+			content_tag(
+				:a, rcumber.name, 
+				:href => rcumber_path(rcumber.uid) + demo_parameters
+			), 
+	:class => 'cucumber_test' 
+	%>
+	<% end %>
 <% end %>
 </ul>
 </div>

@@ -24,11 +24,22 @@ class Rcumber
   end
 
   def run
-    self.last_results = RcumberResults.new(`cucumber features/*.feature`.to_a)
+    self.last_results = RcumberResults.new(`cucumber #{@path}`.to_a)
   end
 
   def save
    File.open(@path, 'w') {|f| f.write(@raw_content) }
+  end
+  
+  ## Might as well make a few available from rcumber if you don't have any cucumber story tests in the project
+  def self.demos
+    Dir.glob("#{RAILS_ROOT}/vendor/plugins/rcumber/features/**/*#{FEATURE_SUFFIX}").collect { |x| new(x) }
+  end
+  
+  def self.find_demo(the_uid)
+    return demos.first
+    x = demos.detect {|x| x.uid == the_uid }
+    raise "Could not detect cucumber with uid: #{the_uid} in #{demos.inspect}"
   end
   
   def self.all

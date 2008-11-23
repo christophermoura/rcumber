@@ -2,33 +2,52 @@ require File.expand_path(File.dirname(__FILE__) + '/../helpers/rcumbers_helper')
 
 class RcumbersController < ApplicationController
 
+  before_filter :get_rcumber
+  
   layout 'rcumbers'
   include RcumbersHelper
   
   def index
-    @rcumbers = Rcumber.all
+    if params[:demos] == "true"
+      @rcumbers = Rcumber.demos
+    else
+      @rcumbers = Rcumber.all
+    end
   end
-  
+
+  def get_rcumber
+    id = params[:rcumber_id] ? params[:rcumber_id] : params[:id]
+    if params[:demos] == "true"
+      @rcumber = Rcumber.find_demo(id)
+    else
+      @rcumber = Rcumber.find(id)
+    end
+  end
+    
   def show
-    @rcumber = Rcumber.find(params[:id])
+    get_rcumber
+    raise "Could not find cucumber file for #{params[:id]}" if @rcumber.nil?
+    render :action => 'show'
   end
   
   def run
-    @rcumber = Rcumber.find(params[:rcumber_id])
+    get_rcumber
     @rcumber.run
     render :action => 'show'
   end
   
   def edit
-    @rcumber = Rcumber.find(params[:id])
+    get_rcumber
+    raise "Could not find cucumber file for #{params[:id]}" if @rcumber.nil?
   end
   
   def update
-    @rcumber = Rcumber.find(params[:id])
+    get_rcumber
     if params[:rcumber][:raw_content].empty?
       flash.now[:error] = "Please don't try to pickle an empty cuke!."
       render :action => 'edit'
     else
+      get_rcumber
       @rcumber.raw_content = params[:rcumber][:raw_content]
       @rcumber.save
       flash.now[:notice] = "Cucumber was pickled!"
