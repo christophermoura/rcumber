@@ -6,23 +6,50 @@
 
 <h1><%= @rcumber.name %></h1>
 	
-	<ul class="rcumber_content">
-	<% @rcumber.raw_content.each do |line| %>
-		<%
-			line =~ /([ \t]*)(.*)/
-			indents = $1.split('').collect{|x| '&nbsp;&nbsp;'}
-		%>
-		<%= content_tag :li, indents.to_s + line %>
-	<% end %>
-	</ul>
 
 
+<script type="text/javascript">
+var myTabs = new YAHOO.widget.TabView("demo");
+</script> 
 
-<% unless @rcumber.last_results.nil? %>
-	<h1>Test Results</h1>
-	<ul>
-		<% @rcumber.last_results.each do |line| %>
-			<%= content_tag :li, line %>
-		<% end %>
-	</ul>
-<% end %>
+
+<div id="demo" class="yui-navset">
+    <ul class="yui-nav">
+        <li class="<%= @rcumber.last_results.nil? ? 'selected' : '' %>">
+					<a href="#tab1"><em>Cucumber Test</em></a>
+				</li>
+				<% unless @rcumber.last_results.nil? %>
+        <li>
+					<a href="#tab2"><em>Cucumber Test Results</em></a>
+				</li>
+				<% end %>
+    </ul>         
+   
+    <div class="yui-content">
+    
+      <div><p>
+				<ul class="rcumber_content">
+				<% @rcumber.raw_content.each do |line| %>
+					<%
+						line =~ /([ \t]*)(.*)/
+						indents = $1.split('').collect{|x| '&nbsp;&nbsp;'}
+					%>
+					<%= content_tag :li, indents.to_s + line %>
+				<% end %>
+				</ul>
+			</p></div>
+
+			<% unless @rcumber.last_results.nil? %>
+		  <div><p>
+					<h1>Test Results</h1>
+					<ul>
+						<% @rcumber.last_results.each do |line| %>
+							<%= content_tag :li, line %>
+						<% end %>
+					</ul>
+			</p></div>
+			<% end %>
+
+		</div><!-- yui-content -->
+		
+</div>

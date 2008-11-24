@@ -5,10 +5,19 @@
 <head>
 	<title>RCumber - Rails Cucumber Interface</title>
 
+	<!-- Base YUI JavaScript -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/element/element-beta-min.js"></script>
+
+	<!-- TabView -->
+	<!-- Sam Skin CSS for TabView -->
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/tabview/assets/skins/sam/tabview.css">
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/tabview/tabview-min.js"></script>
+
 	<%= render :partial => 'rcumbers/stylesheet' %>
 	
 </head>
-<body>
+<body class="yui-skin-sam"> 
 <div id="doc3" class="yui-t4">
    <div id="hd">
 	</div>
@@ -26,3 +35,6 @@
 </div>
 </body>
 </html>
+
+
+
