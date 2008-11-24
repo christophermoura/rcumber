@@ -1,18 +1,62 @@
 
+
+<%= link_to 'see all story tests', '/rcumber' %>
+| 
+
 <%= rcumber_flashes %>
 
-
-<fieldset id="edit_rcumber">
-	<legend>Edit: <%= @rcumber.name %></legend>
+<h1><%= @rcumber.name %></h1>
 	
-	<% form_for @rcumber, :url => rcumber_path(@rcumber.uid) do |f| %>
-		<%= f.text_area :raw_content, :cols => 70 %>
-		<br/>
-		<br/>
-			<%= submit_tag 'Pickle It!' %>
-			<%= link_to 'Cancel this edit', rcumber_path(@rcumber.uid) %>
-			<% if params[:demos] == "true" %>
-				<input type="hidden" name="demos" value="true">
+
+
+<script type="text/javascript">
+var myTabs = new YAHOO.widget.TabView("demo");
+</script> 
+
+
+<div id="demo" class="yui-navset">
+    <ul class="yui-nav">
+        <li class="<%= @rcumber.last_results.nil? ? 'selected' : '' %>">
+					<a href="#tab1"><em>Cucumber Test</em></a>
+				</li>
+				<% unless @rcumber.last_results.nil? %>
+        <li>
+					<a href="#tab2"><em>Cucumber Test Results</em></a>
+				</li>
+				<% end %>
+    </ul>         
+   
+    <div class="yui-content">
+    
+      <div><p>
+				<fieldset id="edit_rcumber">
+					<legend>Edit: <%= @rcumber.name %></legend>
+	
+					<% form_for @rcumber, :url => rcumber_path(@rcumber.uid) do |f| %>
+						<%= f.text_area :raw_content, :cols => 70 %>
+						<br/>
+						<br/>
+							<%= submit_tag 'Pickle It!' %>
+							<%= link_to 'Cancel this edit', rcumber_path(@rcumber.uid) %>
+							<% if params[:demos] == "true" %>
+								<input type="hidden" name="demos" value="true">
+							<% end %>
+					<% end %>
+				</fieldset>
+
+			</p></div>
+
+			<% unless @rcumber.last_results.nil? %>
+		  <div><p>
+					<h1>Test Results</h1>
+					<ul>
+						<% @rcumber.last_results.each do |line| %>
+							<%= content_tag :li, line %>
+						<% end %>
+					</ul>
+			</p></div>
 			<% end %>
-	<% end %>
-</fieldset>
+
+		</div><!-- yui-content -->
+		
+</div>

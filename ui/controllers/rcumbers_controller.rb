@@ -33,6 +33,7 @@ class RcumbersController < ApplicationController
   def run
     get_rcumber
     @rcumber.run
+    flash.now[:notice] = "Cucumber test just completed."
     render :action => 'show'
   end
   

@@ -1,6 +1,5 @@
 <%= link_to 'see all story tests', '/rcumber' %>
-| <%= link_to 'run this story test', rcumber_run_path(@rcumber.uid) + demo_parameters %>
-| <%= link_to 'edit this story test', edit_rcumber_path(@rcumber.uid) + demo_parameters %>
+| 
 
 <%= rcumber_flashes %>
 
@@ -28,7 +27,8 @@ var myTabs = new YAHOO.widget.TabView("demo");
     <div class="yui-content">
     
       <div><p>
-				<ul class="rcumber_content">
+<%= link_to 'run this story test', rcumber_run_path(@rcumber.uid) + demo_parameters %>
+| <%= link_to 'edit this story test', edit_rcumber_path(@rcumber.uid) + demo_parameters %>				<ul class="rcumber_content">
 				<% @rcumber.raw_content.each do |line| %>
 					<%
 						line =~ /([ \t]*)(.*)/
