@@ -1,16 +1,10 @@
-<%= link_to 'see all story tests', '/rcumber' %>
-| 
-
 <%= rcumber_flashes %>
 
 <h1><%= @rcumber.name %></h1>
-	
-
 
 <script type="text/javascript">
 var myTabs = new YAHOO.widget.TabView("demo");
 </script> 
-
 
 <div id="demo" class="yui-navset">
     <ul class="yui-nav">
@@ -27,27 +21,21 @@ var myTabs = new YAHOO.widget.TabView("demo");
     <div class="yui-content">
     
       <div><p>
-<%= link_to 'run this story test', rcumber_run_path(@rcumber.uid) + demo_parameters %>
-| <%= link_to 'edit this story test', edit_rcumber_path(@rcumber.uid) + demo_parameters %>				<ul class="rcumber_content">
-				<% @rcumber.raw_content.each do |line| %>
-					<%
-						line =~ /([ \t]*)(.*)/
-						indents = $1.split('').collect{|x| '&nbsp;&nbsp;'}
-					%>
-					<%= content_tag :li, indents.to_s + line %>
-				<% end %>
-				</ul>
+				<%= link_to 'see all story tests', '/rcumber' %>
+				| <%= link_to 'run this story test', rcumber_run_path(@rcumber.uid) + demo_parameters %>
+				| <%= link_to 'edit this story test', edit_rcumber_path(@rcumber.uid) + demo_parameters %>				
+				<pre><%= @rcumber.raw_content.to_s %></pre>
 			</p></div>
 
 			<% unless @rcumber.last_results.nil? %>
-		  <div><p>
-					<h1>Test Results</h1>
-					<ul>
-						<% @rcumber.last_results.each do |line| %>
-							<%= content_tag :li, line %>
-						<% end %>
-					</ul>
-			</p></div>
+		  <div>
+				<%= link_to 'see all story tests', '/rcumber' %>
+				| <%= link_to 'run this story test', rcumber_run_path(@rcumber.uid) + demo_parameters %>
+				| <%= link_to 'edit this story test', edit_rcumber_path(@rcumber.uid) + demo_parameters %>			
+				<p>
+					<pre><%= @rcumber.last_results.to_s %></pre>
+				</p>
+			</div>
 			<% end %>
 
 		</div><!-- yui-content -->
