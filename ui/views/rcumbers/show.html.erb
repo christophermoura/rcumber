@@ -18,7 +18,7 @@ var myTabs = new YAHOO.widget.TabView("demo");
 					<a href="#tab1"><em>Cucumber Test</em></a>
 				</li>
 				<% unless @rcumber.last_results.nil? %>
-        <li>
+        <li class="<%= @rcumber.last_results ? 'selected' : '' %>">
 					<a href="#tab2"><em>Cucumber Test Results</em></a>
 				</li>
 				<% end %>
