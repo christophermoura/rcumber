@@ -1,11 +1,8 @@
 <div id="cucumber_index">
 
 <h1><img src="/images/rcumber.gif"/>Rcumber</h1>
-<h2>Rcumber - Rails plugin to manage Cucumber tests.</h1>
-	<p>You are looking at the very first version of rcumber.  <br/>
-		Please give us feedback at github so we can turn many a mickle into a muckle.
-	</p>
 <h3>Here's all your Cukes!</h3>
+<%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
 <ul id="cucumber_tests">
 <% if @rcumbers.empty? %>
 	<p>You don't have any Cucumber tests in the ./feature directory of your project. <br/>

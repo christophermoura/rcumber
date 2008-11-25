@@ -42,6 +42,7 @@ ENDL
     before(:each) do
        @full_path = File.dirname(__FILE__) + '/../fixtures/feature_x.feature'
        (@file_content.to_s =~ /Feature: (.*)/).should == 0
+       File.should_receive(:exist?).with(@full_path).and_return(true)
        File.should_receive(:read).with(@full_path).and_return(@file_content)
        @rcumber = Rcumber.new(@full_path)
     end

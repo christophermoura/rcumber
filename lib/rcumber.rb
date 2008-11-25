@@ -2,6 +2,7 @@
 ## This class is designd to wrap around a particular implementation of a cucumber story test.
 ## It provides a full API to 
 ##
+require 'pathname'
 class Rcumber
 
   attr_accessor :new_filename
@@ -21,10 +22,19 @@ class Rcumber
   PATH_PREFIX = RAILS_ROOT + "/features/"
   FEATURE_SUFFIX = ".feature"
 
-  def initialize(path)
-    load_from_path(path) unless path.empty?
+  def initialize(path=nil)
+    load_from_path(path) unless path.nil?
   end
 
+  ## Use this to 
+  def self.create_with_relative_path(path)
+    Rcumber.new("#{RAILS_ROOT}/features/#{path}.feature")
+  end
+  
+  def to_s
+    uid
+  end
+  
   def run
     self.last_results = RcumberResults.new(`cucumber #{@path}`.to_a)
   end
@@ -62,7 +72,7 @@ class Rcumber
     def load_from_path(path)
       @path = path
       @uid = File.basename(@path, FEATURE_SUFFIX)
-      @raw_content = File.read(path)
+      @raw_content = File.exist?(path) ? File.read(path) : ''
       @preamble = []
       
       next_field = 'name'

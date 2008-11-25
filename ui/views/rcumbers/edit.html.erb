@@ -30,7 +30,7 @@ var myTabs = new YAHOO.widget.TabView("demo");
     
       <div><p>
 				<fieldset id="edit_rcumber">
-					<legend>Edit: <%= @rcumber.name %></legend>
+					<legend><%= image_tag('rcumber.gif') %> Edit: <%= @rcumber.name %></legend>
 	
 					<% form_for @rcumber, :url => rcumber_path(@rcumber.uid) do |f| %>
 						<%= f.text_area :raw_content, :cols => 70 %>

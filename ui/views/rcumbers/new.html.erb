@@ -1,8 +1,12 @@
-<fieldset>
-<legend>New Cucumber</legend>
-<% form_for :rcumber, :method => 'put' do |f| %>
-	<h2>Enter the base filename</h2>
-  <%= f.text_field :new_filename %>	
-  <%= submit_tag 'Create' %>
-<% end %>
+<fieldset id="new_rcumber">
+	<legend><%= image_tag('rcumber.gif') %> Create a new Cucumber</legend>
+	<% form_for :rcumber, :method => :put do |f| %>
+		<%= content_tag :h3, 'Enter the base filename' %>
+		<%= content_tag :p, '(alphanumerics and underscores only please)'%>
+		<%= f.text_field :path %>	
+		<%= content_tag :h3, 'Enter the Feature name:' %>
+		<%= f.text_field :name %>	
+		<%= submit_tag 'Create' %>
+	<% end %>
 </fieldset>
+<%= link_to 'see all cucumbers', rcumbers_path %>

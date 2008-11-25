@@ -37,6 +37,29 @@ class RcumbersController < ApplicationController
     render :action => 'show'
   end
   
+  def new
+    if request.post?
+      rcumber = params[:rcumber]
+      begin
+        raise "Must supply a base filename"  if rcumber[:path].empty?
+        raise "Must supply a feature name"  if rcumber[:name].empty?
+        raise "Path can only contain alphanumerics and underscores" unless (rcumber[:name] =~ /^[a-z_]+$/)
+        @rcumber = Rcumber.create_with_relative_path(params[:rcumber][:path])
+        raise "Are you sure you have Cucumber installed? We can't seem to find the directory #{File.dirname(@rcumber.path)}" unless File.exist?(File.dirname(@rcumber.path))
+        @rcumber.raw_content = "Feature: #{params[:rcumber][:name]}"
+        @rcumber.save
+        flash.now[:notice] = "Cucumber was pickled!"
+        redirect_to :controller => 'rcumbers', :action => 'edit', :id => @rcumber.uid 
+      rescue Exception => e
+        @rcumber = Rcumber.new
+        flash.now[:error] = e.to_s
+      end
+    elsif request.get?
+      @rcumber = Rcumber.new
+      render :action => 'new'
+    end
+  end
+  
   def edit
     get_rcumber
     raise "Could not find cucumber file for #{params[:id]}" if @rcumber.nil?

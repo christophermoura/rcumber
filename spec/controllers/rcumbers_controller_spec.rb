@@ -71,10 +71,36 @@ describe RcumbersController do
   end
   
   describe 'new' do
-    it "should render a form asking for the filename (w/o) the .feature extension" do
+  
+    it "GET request should render a form asking for the filename (w/o) the .feature extension" do
       get :new
       response.should render_template(:new)
     end
+    
+    it "POST request should create a new cucumber test" do
+      @mock_rcumber = mock Rcumber
+      Rcumber.should_receive(:new).and_return(@mock_rcumber)
+      @mock_rcumber.should_receive(:raw_content=).and_return(true)
+      @mock_rcumber.should_receive(:save).and_return(true)
+      
+      post :new, :rcumber => {:path => 'foobar', :name => 'A feature name'}
+      response.should render_template(:show)
+      assigns[:rcumber].should == @mock_rcumber
+    end
+    
+    it "POST request should check for blank path" do
+      post :new, :rcumber => {:path => '', :name => 'A feature name'}
+      response.should render_template(:new)
+      flash[:error].should_not be_nil
+      
+      # rcumber = params[:rcumber]
+      # if rcumber[:path].empty?
+      #   flash.now[:error] = "Must provide a path"
+      #   render :action => 'new'
+      # else
+    end
+    
+    it "POST request should check for blank name"
   end
   
 end
