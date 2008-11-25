@@ -1,0 +1,5 @@
+<%= link_to 'see all cucumbers', rcumbers_path %>
+| <%= link_to 'run this cucumber', rcumber_run_path(@rcumber.uid) + demo_parameters %>
+| <%= link_to 'edit this cucumber', edit_rcumber_path(@rcumber.uid) + demo_parameters %>				
+| <%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
+| <%= link_to 'delete this cucumber', rcumber_path(@rcumber.uid) + demo_parameters, :method => 'delete', :confirm => "This will remove the file from your filesystem.  Have you got a copy you can recover? Are you sure you want to delete the file on disk?" %>				

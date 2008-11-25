@@ -78,15 +78,10 @@ describe RcumbersController do
     end
     
     it "POST request should create a new cucumber test" do
-      @mock_rcumber = mock Rcumber
-      Rcumber.should_receive(:new).and_return(@mock_rcumber)
-      @mock_rcumber.should_receive(:raw_content=).and_return(true)
-      @mock_rcumber.should_receive(:save).and_return(true)
-      @mock_rcumber.stub!(:path).and_return("fullpath")
-      @mock_rcumber.stub!(:uid).and_return("uid")
-      File.should_receive(:exit?).with(File.dirname("fullpath")).and_return(true)
-      post :new, :rcumber => {:path => 'foobar', :name => 'A feature name'}
-      response.should redirect_to(edit_rcumber_url(@mock_rcumber))
+      params = {:path => 'foobar', :name => 'A feature name'}
+      controller.should_receive(:do_save).with(params)
+      post :new, :rcumber => params
+      response.should render_template(edit)
       assigns[:rcumber].should == @mock_rcumber
     end
     

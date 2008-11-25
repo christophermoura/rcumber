@@ -1,11 +1,6 @@
-
-
-<%= link_to 'see all story tests', '/rcumber' %>
-| 
-
 <%= rcumber_flashes %>
 
-<h1><%= @rcumber.name %></h1>
+<h1><%= image_tag('rcumber.gif') %> <%= @rcumber.name %></h1>
 	
 
 
@@ -30,7 +25,7 @@ var myTabs = new YAHOO.widget.TabView("demo");
     
       <div><p>
 				<fieldset id="edit_rcumber">
-					<legend><%= image_tag('rcumber.gif') %> Edit: <%= @rcumber.name %></legend>
+					<legend>Edit it</legend>
 	
 					<% form_for @rcumber, :url => rcumber_path(@rcumber.uid) do |f| %>
 						<%= f.text_area :raw_content, :cols => 70 %>
