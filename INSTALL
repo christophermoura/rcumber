@@ -1,0 +1,20 @@
+INSTALLATION
+------------
+
+	- Add rcumber as a plugin to your project (clone it from github in your vendor/plugins directory).
+
+	- Add to your routes:
+	
+			map.rcumber 'rcumber', :controller => 'rcumbers', :action => 'index' 
+		  map.rcumber_icon 'rcumber_icon', :controller => 'rcumbers', :action => 'rcumber_icon '  
+		  map.resources :rcumbers do |rcumber|
+		    rcumber.run 'run', :controller => 'rcumbers', :action => 'run'
+		  end
+		
+	- Copy ui/rcumber.gif to the /images directory in your project - recommended for now
+		(until I learn how to intercept requests to "/images" from a plugin...)
+	
+	- Copy ui/rcumber.css to your /stylesheets directory - recommend for now
+		(until I learn how to intercept requests to "/stylesheets" from a plugin...)
+	
+	

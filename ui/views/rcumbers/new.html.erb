@@ -1,0 +1,8 @@
+<fieldset>
+<legend>New Cucumber</legend>
+<% form_for :rcumber, :method => 'put' do |f| %>
+	<h2>Enter the base filename</h2>
+  <%= f.text_field :new_filename %>	
+  <%= submit_tag 'Create' %>
+<% end %>
+</fieldset>
