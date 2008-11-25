@@ -1,0 +1,20 @@
+KNOWN BUGS
+------------
+* Not displaying stderr in test results - Need a tighter way to run than using system() ?
+* Not handling creating a new test with the same name as an existing test - currently overwrites
+* need to improve field checking, error handling and help on creation screen - it's confusing - do they really need to manage the filename?
+
+ROADMAP / UPCOMING FEATURES 
+----------------
+* Show all tests next to the current test for faster navigation.
+* Create a demo/home site at radsoft.com where people can play with this plugin
+* Add some screen shots to the home site
+* Graphical commander panel to run and show the red/green
+* Run all tests or a selected set of tests at once
+* Click on a stack trace in the results and navigate to textmate
+* Extract user configurable parameters into a ./config file
+* Integrate some relevant 3rd party agile articles/blogs on story tests and cucumber using a feed from radsoft.com (user definable).
+
+3rd PARTY INTEGRATION PLANS
+---------------------------
+* Integration with radtrack - see radtrack project for details

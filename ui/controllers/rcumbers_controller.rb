@@ -41,15 +41,7 @@ class RcumbersController < ApplicationController
     if request.post?
       rcumber = params[:rcumber]
       begin
-        raise "Must supply a base filename"  if rcumber[:path].empty?
-        raise "Must supply a feature name"  if rcumber[:name].empty?
-        raise "Path can only contain alphanumerics and underscores" unless (rcumber[:name] =~ /^[a-z_]+$/)
-        @rcumber = Rcumber.create_with_relative_path(params[:rcumber][:path])
-        raise "Are you sure you have Cucumber installed? We can't seem to find the directory #{File.dirname(@rcumber.path)}" unless File.exist?(File.dirname(@rcumber.path))
-        @rcumber.raw_content = "Feature: #{params[:rcumber][:name]}"
-        @rcumber.save
-        flash.now[:notice] = "Cucumber was pickled!"
-        redirect_to :controller => 'rcumbers', :action => 'edit', :id => @rcumber.uid 
+        do_save
       rescue Exception => e
         @rcumber = Rcumber.new
         flash.now[:error] = e.to_s
@@ -109,5 +101,18 @@ class RcumbersController < ApplicationController
     self.template_root = view_path
   end
 
+  private
+  
+    def do_save
+      raise "Must supply a base filename"  if rcumber[:path].empty?
+      raise "Must supply a feature name"  if rcumber[:name].empty?
+      raise "Path can only contain alphanumerics and underscores" unless (rcumber[:name] =~ /^[a-z_]+$/)
+      @rcumber = Rcumber.create_with_relative_path(params[:rcumber][:path])
+      raise "Are you sure you have Cucumber installed? We can't seem to find the directory #{File.dirname(@rcumber.path)}" unless File.exist?(File.dirname(@rcumber.path))
+      @rcumber.raw_content = "Feature: #{params[:rcumber][:name]}"
+      @rcumber.save
+      flash.now[:notice] = "Cucumber was pickled!"
+      redirect_to :controller => 'rcumbers', :action => 'edit', :id => @rcumber.uid
+    end
 
 end

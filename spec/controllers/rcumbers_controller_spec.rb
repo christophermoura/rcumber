@@ -82,9 +82,11 @@ describe RcumbersController do
       Rcumber.should_receive(:new).and_return(@mock_rcumber)
       @mock_rcumber.should_receive(:raw_content=).and_return(true)
       @mock_rcumber.should_receive(:save).and_return(true)
-      
+      @mock_rcumber.stub!(:path).and_return("fullpath")
+      @mock_rcumber.stub!(:uid).and_return("uid")
+      File.should_receive(:exit?).with(File.dirname("fullpath")).and_return(true)
       post :new, :rcumber => {:path => 'foobar', :name => 'A feature name'}
-      response.should render_template(:show)
+      response.should redirect_to(edit_rcumber_url(@mock_rcumber))
       assigns[:rcumber].should == @mock_rcumber
     end
     
