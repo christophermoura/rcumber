@@ -14,6 +14,9 @@ ROADMAP / UPCOMING FEATURES
 * Click on a stack trace in the results and navigate to textmate
 * Extract user configurable parameters into a ./config file
 * Integrate some relevant 3rd party agile articles/blogs on story tests and cucumber using a feed from radsoft.com (user definable).
+* better graphical feedback on a test run
+* structured editing of a cucumber test
+* subversion and git integration for auto-commit of story test updates
 
 3rd PARTY INTEGRATION PLANS
 ---------------------------
