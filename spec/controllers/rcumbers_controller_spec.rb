@@ -18,50 +18,62 @@ describe RcumbersController do
     end
     
   end
-    
-  describe 'show' do
+
+  describe 'an existing rcumber object responding to ' do
     
     before(:each) do
-      @mock_test = mock Rcumber
-      Rcumber.should_receive(:find).with("name").and_return(@mock_test)
-      get :show, :id => "name"
-    end
-    
-    it "should render the show template" do
-      response.should render_template(:show)
-    end
-  end
-  
-  describe 'update' do
-    
-    it "should save the new contents of the file" do
       @mock_rcumber = mock Rcumber
       Rcumber.should_receive(:find).with("name").and_return(@mock_rcumber)
-      @mock_rcumber.should_receive(:raw_content=).with("some raw content")
-      @mock_rcumber.should_receive(:save).and_return(true)
-      put :update, :id => "name", :rcumber => {:raw_content => "some raw content"}
-      flash.now[:notice].should_not be_nil
-      response.should render_template(:show)
-      
     end
 
-    it "should reject a save with no content" do
-      @mock_rcumber = mock Rcumber
-      Rcumber.should_receive(:find).with("name").and_return(@mock_rcumber)
-      put :update, :id => "name", :rcumber => {:raw_content => ""}
-      response.should render_template(:edit)
-      flash.now[:error].should_not be_nil
+    describe 'show' do  
+      it "should render the show template" do
+        get :show, :id => "name"
+        response.should render_template(:show)
+      end
     end
+  
+    describe 'update' do
     
+      it "should save the new contents of the file" do
+        @mock_rcumber.should_receive(:raw_content=).with("some raw content")
+        @mock_rcumber.should_receive(:save).and_return(true)
+        put :update, :id => "name", :rcumber => {:raw_content => "some raw content"}
+        flash.now[:notice].should_not be_nil
+        response.should render_template(:show)
+      
+      end
+
+      it "should reject a save with no content" do
+        put :update, :id => "name", :rcumber => {:raw_content => ""}
+        response.should render_template(:edit)
+        flash.now[:error].should_not be_nil
+      end
+    
+    end
+  
+    describe 'edit' do
+      it 'should render a form with the object in it' do
+        put :edit, :id => "name"
+        assigns[:rcumber].should == @mock_rcumber
+        response.should render_template(:edit)
+      end
+    end
+  
+    describe 'destroy' do
+     it 'should remove the file from the file system' do
+       @mock_rcumber.should_receive(:destroy)
+       put :destroy, :id => "name"
+       response.should render_template(:index)
+     end
+   end
+
   end
   
-  describe 'edit' do
-    it 'should render a form with the object in it' do
-      @mock_rcumber = mock Rcumber
-      Rcumber.should_receive(:find).with("name").and_return(@mock_rcumber)
-      put :edit, :id => "name"
-      assigns[:rcumber].should == @mock_rcumber
-      response.should render_template(:edit)
+  describe 'new' do
+    it "should render a form asking for the filename (w/o) the .feature extension" do
+      get :new
+      response.should render_template(:new)
     end
   end
   

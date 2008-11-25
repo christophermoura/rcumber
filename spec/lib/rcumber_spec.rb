@@ -43,40 +43,48 @@ ENDL
        @full_path = File.dirname(__FILE__) + '/../fixtures/feature_x.feature'
        (@file_content.to_s =~ /Feature: (.*)/).should == 0
        File.should_receive(:read).with(@full_path).and_return(@file_content)
-       @test = Rcumber.new(@full_path)
+       @rcumber = Rcumber.new(@full_path)
     end
  
     it "should strip everything up to 'features' in the path" do
-      @test.path.should == @full_path
+      @rcumber.path.should == @full_path
     end
       
     it "should have the content of the file" do
-      @test.raw_content.should == @file_content
+      @rcumber.raw_content.should == @file_content
     end
     
     it "should have parsed the name" do
-      @test.name.should == "A User Story"
+      @rcumber.name.should == "A User Story"
     end
     
     it "should return the base filename without an extension as it's test_id" do
-      @test.uid.should == "feature_x"
+      @rcumber.uid.should == "feature_x"
     end
     
     describe "save" do
     
       it "should write the contents to the file" do
         File.should_receive(:open).with(@full_path, 'w')
-        @test.save
+        @rcumber.save
       end
       
   
     end
 
+    ## TODO: FEATURE: User should be able to disable deleting as a plugin option
+    describe "destroy" do
+      it "should tell the filesystem to remove the cucumber test file" do
+        File.should_receive(:delete).with(@full_path)
+        @rcumber.destroy
+      end
+    end
+    
     describe "Rcumber.find" do
       it "should return an Rcumber object if it exists" do
-        Rcumber.stub!(:all).and_return([@test])
-        Rcumber.all.should_receive(:detect).and_return(@test)
-        Rcumber.find(@test.uid).uid.should == @test.uid
+        Rcumber.stub!(:all).and_return([@rcumber])
+        Rcumber.all.should_receive(:detect).and_return(@rcumber)
+        Rcumber.find(@rcumber.uid).uid.should == @rcumber.uid
       end
     end
   

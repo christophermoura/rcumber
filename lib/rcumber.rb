@@ -4,6 +4,8 @@
 ##
 class Rcumber
 
+  attr_accessor :new_filename
+  
   ## This class is used to hold the resulting log of a test run
   ## and eventually provide an api around the results of a test run.
   ## for now, I'm just extending an Array
@@ -29,6 +31,10 @@ class Rcumber
 
   def save
    File.open(@path, 'w') {|f| f.write(@raw_content) }
+  end
+  
+  def destroy
+    File.delete(@path)
   end
   
   ## Might as well make a few available from rcumber if you don't have any cucumber story tests in the project

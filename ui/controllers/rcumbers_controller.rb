@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../helpers/rcumbers_helper')
 
 class RcumbersController < ApplicationController
 
-  before_filter :get_rcumber
+  before_filter :get_rcumber, :except => [:rcumber_icon]
   
   layout 'rcumbers'
   include RcumbersHelper
@@ -53,6 +53,12 @@ class RcumbersController < ApplicationController
       flash.now[:notice] = "Cucumber was pickled!"
       render :action => 'show'
     end
+  end
+  
+  def destroy
+    get_rcumber
+    @rcumber.destroy
+    render :action => 'index'
   end
   
   # don't want to include any filters inside the application chain - might create errors
