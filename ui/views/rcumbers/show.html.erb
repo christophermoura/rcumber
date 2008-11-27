@@ -27,7 +27,7 @@ var myTabs = new YAHOO.widget.TabView("demo");
 			</p></div>
 
 			<% unless @rcumber.last_results.nil? %>
-		  <div><p>
+		  <div class="cucumber_results"><p>
 				<%= render :partial => 'rcumbers/actions' %>
 				<pre><%= @rcumber.last_results.to_s %></pre>
 				</p></div>

@@ -19,8 +19,9 @@
 				<%# rcumber.state = :passing %>
 				<td class="<%= rcumber.state.to_s %>"><%= rcumber.state.to_s %></td>
 				<td>
-					<%= link_to 'Run', rcumber_run_path(rcumber.uid) + demo_parameters %>
-					| <%= link_to 'View', rcumber_path(rcumber.uid) + demo_parameters %>
+					<%= link_to 'run it', rcumber_run_path(rcumber.uid) + demo_parameters %>
+					| <%= link_to 'view', rcumber_path(rcumber.uid) + demo_parameters %>
+					| <%= link_to 'edit', edit_rcumber_path(rcumber.uid) + demo_parameters %>				
 				</td>
 			</tr>
 		<% end %>

@@ -11,7 +11,7 @@ var myTabs = new YAHOO.widget.TabView("demo");
 
 <div id="demo" class="yui-navset">
     <ul class="yui-nav">
-        <li class="<%= @rcumber.last_results.nil? ? 'selected' : '' %>">
+        <li class="<%= 'selected' %>">
 					<a href="#tab1"><em>Cucumber Test</em></a>
 				</li>
 				<% unless @rcumber.last_results.nil? %>
@@ -42,14 +42,10 @@ var myTabs = new YAHOO.widget.TabView("demo");
 			</p></div>
 
 			<% unless @rcumber.last_results.nil? %>
-		  <div><p>
-					<h1>Test Results</h1>
-					<ul>
-						<% @rcumber.last_results.each do |line| %>
-							<%= content_tag :li, line %>
-						<% end %>
-					</ul>
-			</p></div>
+		  <div class="cucumber_results"><p>
+				<%= render :partial => 'rcumbers/actions' %>
+				<pre><%= @rcumber.last_results.to_s %></pre>
+				</p></div>
 			<% end %>
 
 		</div><!-- yui-content -->
