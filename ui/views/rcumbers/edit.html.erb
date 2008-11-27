@@ -40,13 +40,12 @@ var myTabs = new YAHOO.widget.TabView("demo");
 				</fieldset>
 
 			</p></div>
-
 			<% unless @rcumber.last_results.nil? %>
 		  <div class="cucumber_results"><p>
 				<%= render :partial => 'rcumbers/actions' %>
 				<pre><%= @rcumber.last_results.to_s %></pre>
-				</p></div>
 			<% end %>
+			</p></div>
 
 		</div><!-- yui-content -->
 		

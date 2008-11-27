@@ -1,32 +1,59 @@
-<div id="cucumber_index">
 
-<h1><img src="/images/rcumber.gif"/>Cucumber Dashboard</h1>
-<%= link_to 'run all tests', rcumber_runall_path + demo_parameters, :confirm => "This will clear the known state of every test that you have run up to this point." %>				
-| <%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
-<% if @rcumbers.empty? %>
-	<p>You don't have any Cucumber tests in the ./feature directory of your project. <br/>
-		Either create some, or you can look at these <%= link_to 'demo cucumber tests', rcumbers_path + "?demos=true" %> 
-	</p>
-<% else %>
-	<table class="cucumbers">
-		<thead>
-			<tr><td>Name</td><td>State</td><td>Actions</td></tr>
-		</thead>
-		<tbody>
-		<% @rcumbers.each do |rcumber| %>
-			<tr>
-				<td><%= rcumber.name %></td>
-				<%# rcumber.state = :passing %>
-				<td class="<%= rcumber.state.to_s %>"><%= rcumber.state.to_s %></td>
-				<td>
-					<%= link_to 'run it', rcumber_run_path(rcumber.uid) + demo_parameters %>
-					| <%= link_to 'view', rcumber_path(rcumber.uid) + demo_parameters %>
-					| <%= link_to 'edit', edit_rcumber_path(rcumber.uid) + demo_parameters %>				
-				</td>
-			</tr>
-		<% end %>
-	<tbody>
-<% end %>
+<div id="demo" class="yui-navset">
+    <ul class="yui-nav">
+      <li class="<%= 'selected' %>">
+				<a href="#tab1"><em>
+					All Tests
+				</em></a>
+			</li> 
+		  <li>
+					<a href="#tab2"><em>
+						Cucumber Documentation
+					</em></a>
+				</li>
+    </ul>         
+   
+    <div class="yui-content">
+    
+      <div><p>
+
+				<div id="cucumber_index">
+
+				<h1><img src="/images/rcumber.gif"/>Cucumber Dashboard</h1>
+				<%= link_to 'run all tests', rcumber_runall_path + demo_parameters, :confirm => "This will clear the known state of every test that you have run up to this point." %>				
+				| <%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
+				<% if @rcumbers.empty? %>
+					<p>You don't have any Cucumber tests in the ./feature directory of your project. <br/>
+						Either create some, or you can look at these <%= link_to 'demo cucumber tests', rcumbers_path + "?demos=true" %> 
+					</p>
+				<% else %>
+					<table class="cucumbers">
+						<thead>
+							<tr><td>Name</td><td>State</td><td>Actions</td></tr>
+						</thead>
+						<tbody>
+						<% @rcumbers.each do |rcumber| %>
+							<tr>
+								<td><%= rcumber.name %></td>
+								<%# rcumber.state = :passing %>
+								<td class="<%= rcumber.state.to_s %>"><%= rcumber.state.to_s %></td>
+								<td>
+									<%= link_to 'run it', rcumber_run_path(rcumber.uid) + demo_parameters %>
+									| <%= link_to 'view', rcumber_path(rcumber.uid) + demo_parameters %>
+									| <%= link_to 'edit', edit_rcumber_path(rcumber.uid) + demo_parameters %>				
+								</td>
+							</tr>
+						<% end %>
+					<tbody>
+				<% end %>
+
+				</div>
+
+			</p></div>
 
 
+
+
+		</div><!-- yui-content -->
+		
 </div>
