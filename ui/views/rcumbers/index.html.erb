@@ -3,21 +3,29 @@
 <h1><img src="/images/rcumber.gif"/>Rcumber</h1>
 <h3>Here's all your Cukes!</h3>
 <%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
-<ul id="cucumber_tests">
 <% if @rcumbers.empty? %>
 	<p>You don't have any Cucumber tests in the ./feature directory of your project. <br/>
 		Either create some, or you can look at these <%= link_to 'demo cucumber tests', rcumbers_path + "?demos=true" %> 
 	</p>
 <% else %>
-	<% @rcumbers.each do |rcumber| %>
-	  <%= content_tag :li, 
-			content_tag(
-				:a, rcumber.name, 
-				:href => rcumber_path(rcumber.uid) + demo_parameters
-			), 
-	:class => 'cucumber_test' 
-	%>
-	<% end %>
+	<table class="cucumbers">
+		<thead>
+			<tr><td>Name</td><td>State</td><td>Actions</td></tr>
+		</thead>
+		<tbody>
+		<% @rcumbers.each do |rcumber| %>
+			<tr>
+				<td><%= rcumber.name %></td>
+				<%# rcumber.state = :passing %>
+				<td class="<%= rcumber.state.to_s %>"><%= rcumber.state.to_s %></td>
+				<td>
+					<%= link_to 'Run', rcumber_run_path(rcumber.uid) + demo_parameters %>
+					<%= link_to 'View', rcumber_path(rcumber.uid) + demo_parameters %>
+				</td>
+			</tr>
+		<% end %>
+	<tbody>
 <% end %>
-</ul>
+
+
 </div>

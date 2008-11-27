@@ -15,6 +15,18 @@ class Rcumber
       
   attr_accessor :path, :filename, :raw_content, :name, :preamble, :last_results
   
+  VALID_STATES = [nil, :passing, :failing, :pending]
+  def state
+    @the_state ||= Rails.cache.read("rcumber/#{uid}/state")
+    @the_state
+  end
+  
+  def state=(x)
+    @the_state = x
+    Rails.cache.write("rcumber/#{uid}/state", x.to_s)
+  end
+  
+  
   # For now, the UID is the basename w/o extension of the file:  e.g. "../foo.feature" has uid =>"foo"
   # TODO: FIXME: This has the limitation that you need unique cucumber filenames down the entire directory tree...
   attr_reader :uid 
@@ -37,8 +49,16 @@ class Rcumber
   
   def run
     self.last_results = RcumberResults.new(`cucumber #{@path}`.to_a)
+    self.state = :passing
+    Rails.cache.write("rcumber/#{uid}/state", self.state.to_s)
+    self.state = self.parse_test_results
   end
 
+  def parse_test_results
+    return :failing if self.last_results.to_s =~/(\d+) steps failed/
+    return :pending if self.last_results.to_s =~/(\d) (steps|scenarios) pending/
+  end
+  
   def save
    File.open(@path, 'w') {|f| f.write(@raw_content) }
   end

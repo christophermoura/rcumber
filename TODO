@@ -6,17 +6,17 @@ KNOWN BUGS
 
 ROADMAP / UPCOMING FEATURES 
 ----------------
+* IN PROGRESS - Graphical commander panel to run and show the red/green
+* IN PROGRESS - better graphical feedback on a test run
 * Show all tests next to the current test for faster navigation.
 * Create a demo/home site at radsoft.com where people can play with this plugin
 * Add some screen shots to the home site
-* Graphical commander panel to run and show the red/green
 * Run all tests or a selected set of tests at once
 * Click on a stack trace in the results and navigate to textmate
 * Extract user configurable parameters into a ./config file
 * Integrate some relevant 3rd party agile articles/blogs on story tests and cucumber using a feed from radsoft.com (user definable).
-* better graphical feedback on a test run
 * structured editing of a cucumber test
-* subversion and git integration for auto-commit of story test updates
+* subversion and git integzration for auto-commit of story test updates
 
 3rd PARTY INTEGRATION PLANS
 ---------------------------

@@ -7,7 +7,9 @@ var myTabs = new YAHOO.widget.TabView("demo");
 <div id="demo" class="yui-navset">
     <ul class="yui-nav">
         <li class="<%= @rcumber.last_results.nil? ? 'selected' : '' %>">
-					<a href="#tab1"><em>Cucumber Test</em></a>
+					<a href="#tab1"><em>
+						Cucumber Test 	<span id="state" class="<%= @rcumber.state.to_s %>"><%= @rcumber.state.to_s %></span>
+					</em></a>
 				</li>
 				<% unless @rcumber.last_results.nil? %>
         <li class="<%= @rcumber.last_results ? 'selected' : '' %>">
