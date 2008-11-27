@@ -26,6 +26,14 @@ class Rcumber
     Rails.cache.write("rcumber/#{uid}/state", x.to_s)
   end
   
+  def last_results=(results)
+    @results = results
+    Rails.cache.write("RcumberResults_#{path}", results)
+  end
+  
+  def last_results
+    @results ||= Rails.cache.read("RcumberResults_#{path}")
+  end
   
   # For now, the UID is the basename w/o extension of the file:  e.g. "../foo.feature" has uid =>"foo"
   # TODO: FIXME: This has the limitation that you need unique cucumber filenames down the entire directory tree...
@@ -55,8 +63,9 @@ class Rcumber
   end
 
   def parse_test_results
-    return :failing if self.last_results.to_s =~/(\d+) steps failed/
+    return :failing if self.last_results.to_s =~/(\d+) (steps|scenarios) failed/
     return :pending if self.last_results.to_s =~/(\d) (steps|scenarios) pending/
+    return :passing
   end
   
   def save
