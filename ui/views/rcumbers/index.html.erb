@@ -1,8 +1,8 @@
 <div id="cucumber_index">
 
-<h1><img src="/images/rcumber.gif"/>Rcumber</h1>
-<h3>Here's all your Cukes!</h3>
-<%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
+<h1><img src="/images/rcumber.gif"/>Cucumber Dashboard</h1>
+<%= link_to 'run all tests', rcumber_runall_path + demo_parameters, :confirm => "This will clear the known state of every test that you have run up to this point." %>				
+| <%= link_to 'create a new cucumber', new_rcumber_path + demo_parameters %>				
 <% if @rcumbers.empty? %>
 	<p>You don't have any Cucumber tests in the ./feature directory of your project. <br/>
 		Either create some, or you can look at these <%= link_to 'demo cucumber tests', rcumbers_path + "?demos=true" %> 

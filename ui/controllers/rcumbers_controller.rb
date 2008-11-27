@@ -42,6 +42,13 @@ class RcumbersController < ApplicationController
     render :action => 'show'
   end
   
+  def runall
+    Rcumber.all.each { |c| c.run }
+    flash.now[:notice] = "Cucumber test just completed."
+    @rcumbers = Rcumber.all
+    render :action => 'index'
+  end
+  
   def new
     if request.post?
       begin
