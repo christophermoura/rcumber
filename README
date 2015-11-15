@@ -2,7 +2,7 @@ h2. Overview of RCumber
 
 RCumber is a rails plugin that gives your customers a web interface where they can view, edit and run Cucumber tests directly on your rails project.
 
-First you need to have "rspec":http://github.com/dchelimsky/rspec/tree/master, "rspec-on-rails":http://github.com/dchelimsky/rspec-rails/tree/master and "Cucumber":http://github.com/aslakhellesoy/cucumber/tree/master installed and you'll need to have some cucumber tests written in your project.
+First you need to have "rspec":http://github.com/dchelimsky/rspec/tree/master, "rspec-on-rails":http://github.com/dchelimsky/rspec-rails/tree/master and "Cucumber":https://github.com/cucumber/cucumber installed and you'll need to have some cucumber tests written in your project.
 
 Documentation / Wiki
 --------------------
