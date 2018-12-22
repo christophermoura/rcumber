@@ -1,4 +1,4 @@
-# README
+# This project is not being maintaned anymore
 
 ## Overview of RCumber
 
